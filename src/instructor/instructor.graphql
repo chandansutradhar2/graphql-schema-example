@@ -1,0 +1,24 @@
+type Instructor {
+  name: String
+  email: String
+}
+
+input CreateInstructorInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateInstructorInput {
+  id: Int!
+}
+
+type Query {
+  instructors: [Instructor]!
+  instructor(id: Int!): Instructor
+}
+
+type Mutation {
+  createInstructor(createInstructorInput: CreateInstructorInput!): Instructor!
+  updateInstructor(updateInstructorInput: UpdateInstructorInput!): Instructor!
+  removeInstructor(id: Int!): Instructor
+}
