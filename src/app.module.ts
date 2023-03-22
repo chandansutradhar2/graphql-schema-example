@@ -13,11 +13,13 @@ import { InstructorModule } from './instructor/instructor.module';
   imports: [GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
     playground: true,
-    typePaths: ['./**/*.graphql'],
-    definitions: {
-      path: './src/type.ts',
-      outputAs: 'interface'
-    }
+    installSubscriptionHandlers:true,
+    autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+    // typePaths: ['./**/*.graphql'],
+    // definitions: {
+    //   path: './src/type.ts',
+    //   outputAs: 'interface'
+    // }
 
   }), InstructorModule],
   controllers: [AppController],

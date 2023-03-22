@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Instructor {
+  """id"""
+  id: Int!
+  name: String!
+  email: String!
+}
+
+type Query {
+  instructors: [Instructor!]!
+  instructor(id: Int!): Instructor!
+}
+
+type Mutation {
+  createInstructor(createInstructorInput: CreateInstructorInput!): Instructor!
+  updateInstructor(updateInstructorInput: UpdateInstructorInput!): Instructor!
+  removeInstructor(id: Int!): Instructor!
+}
+
+input CreateInstructorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateInstructorInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
