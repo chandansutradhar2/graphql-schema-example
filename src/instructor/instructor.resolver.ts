@@ -15,7 +15,9 @@ export class InstructorResolver {
   @Mutation(() => Instructor)
   createInstructor(@Args('createInstructorInput') createInstructorInput: CreateInstructorInput) {
     const newInstructor = this.instructorService.create(createInstructorInput);
+   //for any subscription who is listening for new instructorAdded event via apollo server 
     pubSub.publish('instructorAdded', { instructorAdded: newInstructor });
+    //for Grapqhl mutation query
     return newInstructor;
   }
 
@@ -43,6 +45,7 @@ export class InstructorResolver {
   //exposing method for client to listen to (subscribe to)
   @Subscription((returns) => Instructor)
   instructorAdded() {
+    //will create connection for each client 
     return pubSub.asyncIterator('instructorAdded');
   }
 }
