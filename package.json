@@ -28,7 +28,10 @@
     "@nestjs/graphql": "^11.0.4",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-socket.io": "^9.3.12",
+    "@nestjs/websockets": "^9.3.12",
     "graphql": "^16.6.0",
+    "graphql-subscriptions": "^2.0.0",
     "graphql-ws": "^5.12.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"

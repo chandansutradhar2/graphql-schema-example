@@ -1,16 +1,22 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Subscription } from '@nestjs/graphql';
 import { InstructorService } from './instructor.service';
 import { Instructor } from './entities/instructor.entity';
 import { CreateInstructorInput } from './dto/create-instructor.input';
 import { UpdateInstructorInput } from './dto/update-instructor.input';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub()
 
 @Resolver(() => Instructor)
 export class InstructorResolver {
   constructor(private readonly instructorService: InstructorService) { }
 
+
   @Mutation(() => Instructor)
   createInstructor(@Args('createInstructorInput') createInstructorInput: CreateInstructorInput) {
-    return this.instructorService.create(createInstructorInput);
+    const newInstructor = this.instructorService.create(createInstructorInput);
+    pubSub.publish('instructorAdded', { instructorAdded: newInstructor });
+    return newInstructor;
   }
 
   @Query(() => [Instructor], { name: 'instructors' })
@@ -31,5 +37,12 @@ export class InstructorResolver {
   @Mutation(() => Instructor)
   removeInstructor(@Args('id', { type: () => Int }) id: number) {
     return this.instructorService.remove(id);
+  }
+
+
+  //exposing method for client to listen to (subscribe to)
+  @Subscription((returns) => Instructor)
+  instructorAdded() {
+    return pubSub.asyncIterator('instructorAdded');
   }
 }

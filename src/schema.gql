@@ -5,7 +5,7 @@
 type Instructor {
   """id"""
   id: Int!
-  name: String!
+  name: String
   email: String!
 }
 
@@ -22,11 +22,17 @@ type Mutation {
 
 input CreateInstructorInput {
   """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  name: String!
+  email: String!
 }
 
 input UpdateInstructorInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
+  name: String
+  email: String
+}
+
+type Subscription {
+  instructorAdded: Instructor!
 }

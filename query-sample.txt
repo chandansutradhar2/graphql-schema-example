@@ -1,0 +1,25 @@
+subscription{
+  instructorAdded{
+    id,
+    name
+    email
+  }
+}
+
+mutation {
+  createInstructor(
+    createInstructorInput: {
+      id: 6
+      name: "Harsha Sharachandran"
+      email: "harsha.pvs@gmail.com"
+    }
+  ) {
+    name
+  }
+}
+
+{
+  instructors{
+    name,id,email
+  }
+}

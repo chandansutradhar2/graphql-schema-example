@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { InstructorModule } from './instructor/instructor.module';
+import { ChatModule } from './chat/chat.module';
 
 
 @Module({
@@ -21,7 +22,7 @@ import { InstructorModule } from './instructor/instructor.module';
     //   outputAs: 'interface'
     // }
 
-  }), InstructorModule],
+  }), InstructorModule, ChatModule],
   controllers: [AppController],
   providers: [AppService],
 })

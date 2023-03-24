@@ -15,8 +15,13 @@ export class InstructorService {
       name: 'Xavier Stevan'
     })
   }
-  create(createInstructorInput: CreateInstructorInput) {
-    return 'This action adds a new instructor';
+  create(c: CreateInstructorInput) {
+    this.instructors.push({
+      id: c.id,
+      email: c.email,
+      name: c.name
+    });
+    return c;
   }
 
   findAll() {

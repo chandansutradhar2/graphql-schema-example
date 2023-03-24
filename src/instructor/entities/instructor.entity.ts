@@ -5,7 +5,7 @@ export class Instructor {
   @Field(() => Int, { description: 'id' })
   id: number;
 
-  @Field()
+  @Field({ nullable: true })
   name: string;
 
   @Field()
